@@ -46,6 +46,29 @@ func (l *LinkedList[T]) Add(value T) {
 	l.size++
 }
 
+func (l *LinkedList[T]) Remove(value T) {
+	if l.head == nil {
+		return
+	}
+
+	if l.head.Value == value {
+		l.head = l.head.Next
+		l.size--
+		return
+	}
+
+	curr := l.head
+	for curr.Next != nil {
+		if curr.Next.Value == value {
+			curr.Next = curr.Next.Next
+			l.size--
+			return
+		}
+		curr = curr.Next
+	}
+
+}
+
 func (l *LinkedList[T]) RemoveLast() {
 	if l.head == nil {
 		return
